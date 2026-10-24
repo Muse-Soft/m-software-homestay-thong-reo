@@ -109,6 +109,21 @@
   .amen h3{margin:8px 0 4px}
   .amen p{margin:0;color:var(--muted);font-size:14px}
 
+  /* Đánh giá khách — TEC-81 */
+  .review-grid{display:grid;grid-template-columns:1fr;gap:20px;margin-top:24px}
+  .review-card{background:#fff;border:1px solid var(--line);border-radius:16px;
+    padding:16px;box-shadow:0 2px 8px rgba(107,74,47,.08)}
+  .stars{color:var(--clay);letter-spacing:2px;font-size:17px}
+  .review-card blockquote{margin:12px 0;color:var(--ink)}
+  .review-name{font-weight:700}
+  .review-meta{color:var(--muted);font-size:14px}
+  /* Điểm tham quan gần đó — TEC-81 */
+  .place-list{list-style:none;padding:0;margin:24px 0 0}
+  .place{background:#fff;border:1px solid var(--line);border-radius:16px;
+    padding:16px;margin-bottom:12px}
+  .place h3{margin-bottom:4px}
+  .place p{margin:0;color:var(--muted);font-size:15px}
+
   /* Đặt phòng */
   .booking-box{background:var(--wood);color:#fff;border-radius:16px;padding:24px}
   .booking-box h2{color:#fff}
@@ -139,6 +154,7 @@
     nav.desktop{display:flex} .menu-btn,nav.mobile{display:none !important}
     .highlights{grid-template-columns:repeat(3,1fr)}
     .room-grid{grid-template-columns:1fr 1fr}
+    .review-grid{grid-template-columns:repeat(3,1fr)}
     .amen-grid{grid-template-columns:repeat(4,1fr)}
     .sticky-book{display:none}
     footer{padding-bottom:32px}
@@ -153,6 +169,8 @@
     <nav class="desktop" aria-label="Menu chính">
       <a href="#phong">Phòng</a>
       <a href="#tien-ich">Tiện ích</a>
+      <a href="#danh-gia">Đánh giá</a>
+      <a href="#tham-quan">Tham quan</a>
       <a href="#dat-phong">Đặt phòng</a>
     </nav>
     <div style="display:flex;gap:8px;align-items:center">
@@ -163,6 +181,8 @@
   <nav class="mobile" id="mobileNav" aria-label="Menu mobile">
     <a href="#phong">Phòng</a>
     <a href="#tien-ich">Tiện ích</a>
+    <a href="#danh-gia">Đánh giá</a>
+    <a href="#tham-quan">Tham quan</a>
     <a href="#dat-phong">Đặt phòng</a>
   </nav>
 </header>
@@ -284,6 +304,61 @@
         <div class="amen"><div class="icon" aria-hidden="true">🛵</div>
           <h3>Thuê xe máy</h3><p class="placeholder">[PLACEHOLDER: giá thuê/ngày, liên hệ]</p></div>
       </div>
+    </div>
+  </section>
+
+  <!-- TEC-81 — Đánh giá khách (nội dung mẫu cho bản demo) -->
+  <section id="danh-gia" class="section-alt" aria-label="Đánh giá khách">
+    <div class="wrap">
+      <h2>Khách đã ở nói gì</h2>
+      <p class="lead"><span class="stars" aria-label="4,8 trên 5 sao">★★★★☆</span>
+        <strong>4,8/5</strong> — từ các đánh giá mẫu dưới đây.</p>
+      <div class="review-grid">
+        <article class="review-card">
+          <div class="stars" aria-label="5 trên 5 sao">★★★★★</div>
+          <blockquote>“Nhà gỗ thơm mùi thông, tối ngủ nghe tiếng thông reo rất yên.
+            Sân vườn rộng, tối cả nhà nướng BBQ vui lắm.”</blockquote>
+          <p class="review-name">Minh Anh</p>
+          <p class="review-meta">Đã ở tháng 9/2026</p>
+        </article>
+        <article class="review-card">
+          <div class="stars" aria-label="5 trên 5 sao">★★★★★</div>
+          <blockquote>“Phòng sạch, giường êm, chủ nhà nhiệt tình chỉ đường đi chợ đêm
+            và thuê xe máy. Nhất định sẽ quay lại.”</blockquote>
+          <p class="review-name">Hoàng Nam</p>
+          <p class="review-meta">Đã ở tháng 10/2026</p>
+        </article>
+        <article class="review-card">
+          <div class="stars" aria-label="4 trên 5 sao">★★★★☆</div>
+          <blockquote>“Không gian đúng kiểu Đà Lạt mình thích, buổi sáng sương phủ
+            cả vườn. Chỉ tiếc wifi ở phòng cuối hơi yếu.”</blockquote>
+          <p class="review-name">Thu Thảo</p>
+          <p class="review-meta">Đã ở tháng 8/2026</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEC-81 — Điểm tham quan gần đó (gợi ý, chưa có khoảng cách kiểm chứng) -->
+  <section id="tham-quan" aria-label="Điểm tham quan gần đó">
+    <div class="wrap">
+      <h2>Điểm tham quan gần đó</h2>
+      <p class="lead">Gợi ý dạo chơi quanh Đà Lạt khi ở Thông Reo.</p>
+      <ul class="place-list">
+        <li class="place"><h3>🌊 Hồ Xuân Hương</h3>
+          <p>Hồ nước giữa trung tâm thành phố, hợp đi dạo buổi sáng và đạp xe quanh hồ.</p></li>
+        <li class="place"><h3>🛍️ Chợ Đà Lạt</h3>
+          <p>Chợ đêm sầm uất, ăn vặt và mua đặc sản mang về làm quà.</p></li>
+        <li class="place"><h3>🏰 Dinh Bảo Đại (Dinh III)</h3>
+          <p>Biệt thự cổ trên đồi thông, kiến trúc Pháp và vườn hoa rợp bóng.</p></li>
+        <li class="place"><h3>💕 Thung lũng Tình Yêu</h3>
+          <p>Hồ nước, đồi hoa và trò chơi ngoài trời, hợp đi theo nhóm hoặc gia đình.</p></li>
+        <li class="place"><h3>🌸 Vườn hoa thành phố Đà Lạt</h3>
+          <p>Hàng trăm loài hoa khoe sắc quanh năm, góc chụp ảnh nổi tiếng của thành phố.</p></li>
+      </ul>
+      <p class="lead"><em>Lưu ý: các đánh giá và điểm tham quan trên là nội dung mẫu
+        cho bản demo — thay bằng đánh giá thật và khoảng cách kiểm chứng từ homestay
+        trước khi bàn giao.</em></p>
     </div>
   </section>
 
