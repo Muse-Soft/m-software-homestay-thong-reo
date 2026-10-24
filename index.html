@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thông Reo — Homestay Đà Lạt</title>
+<meta name="description" content="Homestay Thông Reo tại Đà Lạt: 4 phòng nhà gỗ ấm cúng, sân vườn, BBQ ngoài trời. Đặt phòng qua gọi điện hoặc Zalo.">
+<!--
+  TEC-80 — Trang chính homestay Thông Reo (phạm vi: hero, giới thiệu, 4 phòng,
+  tiện ích chung, đặt phòng, footer, thanh đặt phòng mobile).
+  KHÔNG thuộc phạm vi TEC-80: đánh giá khách + điểm tham quan (task TEC-81 riêng).
+
+  CẤU HÌNH LIÊN HỆ — THAY BẰNG NỘI DUNG THẬT TRƯỚC KHI LAUNCH (xem checklist
+  cuối file và docs/thiet-ke-homestay-thong-reo.md mục 9):
+  - Điền số điện thoại thật vào CONTACT.phone (chỉ chữ số, không dấu cách, không dấu +)
+    và link Zalo thật vào CONTACT.zalo thì mọi nút Gọi / Zalo trên trang
+    (hero, từng thẻ phòng, khối đặt phòng, thanh mobile) tự động hoạt động.
+  - Hiện tại cả hai đang để trống nên các nút hiển thị trạng thái
+    "chưa cập nhật" và KHÔNG gọi tới số giả nào — tuyệt đối không tự điền
+    số điện thoại hay giá khi chưa có dữ liệu thật.
+  - Tên phòng, sức chứa, loại giường, tiện ích riêng, giá/đêm, giá thuê xe,
+    giờ nhận/trả phòng, địa chỉ: thay các dòng [PLACEHOLDER] bên dưới.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF3E7; --cream-dark:#F1E6D2; --wood:#6B4A2F; --clay:#C97B4A;
+    --pine:#3E5C4B; --ink:#3B2F2A; --muted:#7A6A5E; --line:#E3D5BF;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream);color:var(--ink);
+    font-family:"Be Vietnam Pro",system-ui,sans-serif;font-size:16px;line-height:1.5}
+  h1,h2,h3{font-family:"Playfair Display",Georgia,serif;color:var(--wood);line-height:1.2;margin:0}
+  h1{font-size:32px} h2{font-size:24px} h3{font-size:20px}
+  a{color:var(--wood)} a:focus-visible,button:focus-visible{outline:3px solid var(--clay);outline-offset:2px}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+  section{padding:48px 0}
+  .section-alt{background:var(--cream-dark)}
+  .lead{color:var(--muted)}
+  .placeholder{color:var(--muted);font-style:italic}
+
+  /* Header cố định */
+  header{position:sticky;top:0;z-index:10;background:var(--cream);
+    border-bottom:1px solid var(--line)}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;
+    gap:12px;padding:12px 16px;max-width:1100px;margin:0 auto}
+  .logo{font-family:"Playfair Display",Georgia,serif;font-size:22px;font-weight:700;
+    color:var(--wood);text-decoration:none;line-height:1.1}
+  .logo small{display:block;font-family:"Be Vietnam Pro",sans-serif;font-size:13px;
+    font-weight:400;color:var(--muted)}
+  nav.desktop{display:none;gap:20px}
+  nav.desktop a{text-decoration:none;font-weight:700}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    min-height:48px;padding:0 22px;border-radius:999px;border:2px solid var(--wood);
+    background:transparent;color:var(--wood);font-weight:700;font-size:16px;
+    text-decoration:none;cursor:pointer}
+  .btn:active{filter:brightness(.9)}
+  .btn-primary{background:var(--clay);border-color:var(--clay);color:#fff}
+  .btn[aria-disabled="true"]{opacity:.6;cursor:not-allowed}
+  .menu-btn{background:none;border:1px solid var(--line);border-radius:12px;
+    min-width:44px;min-height:44px;font-size:20px;color:var(--wood);cursor:pointer}
+  nav.mobile{display:none;flex-direction:column;gap:4px;padding:8px 16px 16px;
+    border-top:1px solid var(--line)}
+  nav.mobile.open{display:flex}
+  nav.mobile a{padding:12px 4px;text-decoration:none;font-weight:700}
+
+  /* Hero */
+  .hero{padding:0 0 48px}
+  .hero-visual{position:relative;background:linear-gradient(160deg,#6B4A2F,#3E5C4B);
+    color:#fff;padding:56px 16px 48px;text-align:center}
+  .hero-visual h1{color:#fff;font-size:32px}
+  .hero-visual p{max-width:560px;margin:16px auto 24px;font-size:17px}
+  .hero-visual .tree{font-size:44px}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+  .hero-actions .btn-primary{background:var(--clay);border-color:var(--clay)}
+  .hero-actions .btn-outline-light{border-color:#fff;color:#fff}
+
+  /* Giới thiệu ngắn */
+  .highlights{display:grid;grid-template-columns:1fr;gap:16px;margin-top:24px}
+  .highlight{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px}
+  .highlight .icon{font-size:28px}
+  .highlight h3{margin:8px 0 4px}
+  .highlight p{margin:0;color:var(--muted);font-size:15px}
+
+  /* Thẻ phòng */
+  .room-grid{display:grid;grid-template-columns:1fr;gap:20px;margin-top:24px}
+  .room-card{background:#fff;border:1px solid var(--line);border-radius:16px;
+    overflow:hidden;box-shadow:0 2px 8px rgba(107,74,47,.08)}
+  .room-visual{height:180px;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(150deg,#E9D9BE,#C9A06A);}
+  .room-visual span{font-size:56px}
+  .room-body{padding:16px}
+  .badge{display:inline-block;background:var(--pine);color:#fff;font-size:13px;
+    font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:8px}
+  .room-meta{margin:8px 0;color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+  .chip{border:1px solid var(--line);background:var(--cream);border-radius:999px;
+    padding:4px 12px;font-size:13px}
+  .room-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;
+    border-top:1px solid var(--line);padding-top:12px;margin-top:4px}
+  .price{font-weight:700;font-size:17px;color:var(--clay)}
+
+  /* Tiện ích chung */
+  .amen-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+  .amen{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;text-align:center}
+  .amen .icon{font-size:32px}
+  .amen h3{margin:8px 0 4px}
+  .amen p{margin:0;color:var(--muted);font-size:14px}
+
+  /* Đặt phòng */
+  .booking-box{background:var(--wood);color:#fff;border-radius:16px;padding:24px}
+  .booking-box h2{color:#fff}
+  .booking-box p{color:#F1E6D2}
+  .booking-actions{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}
+  .booking-actions .btn-outline-light{border-color:#fff;color:#fff}
+  .booking-note{border-top:1px solid rgba(255,255,255,.25);padding-top:16px}
+  .booking-note p{margin:6px 0}
+  .chosen-room{background:rgba(255,255,255,.12);border-radius:12px;padding:12px 16px;
+    margin-bottom:16px}
+  .chosen-room:empty{display:none}
+
+  footer{background:var(--wood);color:#F1E6D2;padding:32px 0 96px}
+  footer h3{color:#fff}
+  footer p{margin:6px 0}
+  footer a{color:#fff}
+
+  /* Thanh đặt phòng cố định cuối màn hình — chỉ mobile */
+  .sticky-book{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;
+    background:#fff;border-top:1px solid var(--line);box-shadow:0 -2px 12px rgba(0,0,0,.08)}
+  .sticky-book .btn{flex:1;border-radius:0;border:none;min-height:56px}
+  .sticky-book .btn + .btn{border-left:1px solid var(--line)}
+  .sticky-book.hidden{display:none}
+
+  @media (min-width:768px){
+    h1,.hero-visual h1{font-size:48px} h2{font-size:32px} h3{font-size:24px}
+    section{padding:72px 0}
+    nav.desktop{display:flex} .menu-btn,nav.mobile{display:none !important}
+    .highlights{grid-template-columns:repeat(3,1fr)}
+    .room-grid{grid-template-columns:1fr 1fr}
+    .amen-grid{grid-template-columns:repeat(4,1fr)}
+    .sticky-book{display:none}
+    footer{padding-bottom:32px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#">🌲 Thông Reo<small>Homestay Đà Lạt</small></a>
+    <nav class="desktop" aria-label="Menu chính">
+      <a href="#phong">Phòng</a>
+      <a href="#tien-ich">Tiện ích</a>
+      <a href="#dat-phong">Đặt phòng</a>
+    </nav>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button class="menu-btn" id="menuBtn" aria-label="Mở menu" aria-expanded="false">☰</button>
+      <a class="btn btn-primary" href="#dat-phong">Đặt phòng</a>
+    </div>
+  </div>
+  <nav class="mobile" id="mobileNav" aria-label="Menu mobile">
+    <a href="#phong">Phòng</a>
+    <a href="#tien-ich">Tiện ích</a>
+    <a href="#dat-phong">Đặt phòng</a>
+  </nav>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section class="hero" aria-label="Giới thiệu">
+    <div class="hero-visual">
+      <div class="tree" aria-hidden="true">🌲</div>
+      <h1>Thông Reo — Homestay Đà Lạt</h1>
+      <p>Nhà gỗ ấm cúng giữa rừng thông, sân vườn rộng, BBQ ngoài trời.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary book-call" href="#dat-phong">📞 Gọi đặt phòng</a>
+        <a class="btn btn-outline-light book-zalo" href="#dat-phong">💬 Zalo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Giới thiệu ngắn -->
+  <section aria-label="Điểm nhấn">
+    <div class="wrap">
+      <div class="highlights">
+        <div class="highlight"><div class="icon" aria-hidden="true">🌲</div>
+          <h3>Nhà gỗ ấm cúng</h3>
+          <p>Nội thất gỗ, ánh đèn vàng, ngủ ngon giữa thông reo.</p></div>
+        <div class="highlight"><div class="icon" aria-hidden="true">🌿</div>
+          <h3>Sân vườn rộng</h3>
+          <p>Sân vườn, góc BBQ, chỗ ngồi ngoài trời.</p></div>
+        <div class="highlight"><div class="icon" aria-hidden="true">📍</div>
+          <h3>Gần trung tâm Đà Lạt</h3>
+          <p class="placeholder">[PLACEHOLDER: khoảng cách tới trung tâm/chợ Đà Lạt]</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 phòng -->
+  <section id="phong" aria-label="Các phòng">
+    <div class="wrap">
+      <h2>4 phòng</h2>
+      <p class="lead">Mỗi phòng một thẻ riêng: sức chứa, loại giường, tiện ích riêng và giá/đêm.</p>
+      <div class="room-grid">
+
+        <article class="room-card">
+          <div class="room-visual" role="img" aria-label="Ảnh minh họa tạm cho phòng 1"><span>🛏️</span></div>
+          <div class="room-body">
+            <span class="badge">Sức chứa: [PLACEHOLDER: số khách]</span>
+            <h3>[Tên phòng 1]</h3>
+            <p class="room-meta">👥 Sức chứa: <span class="placeholder">[PLACEHOLDER: số khách]</span><br>
+              🛏️ <span class="placeholder">[PLACEHOLDER: loại giường]</span></p>
+            <div class="chips"><span class="chip placeholder">[PLACEHOLDER: tiện ích riêng của phòng 1]</span></div>
+            <div class="room-foot">
+              <span class="price placeholder">[PLACEHOLDER: giá/đêm]</span>
+              <button class="btn room-book" type="button" data-room="[Tên phòng 1]">Đặt phòng →</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="room-card">
+          <div class="room-visual" role="img" aria-label="Ảnh minh họa tạm cho phòng 2"><span>🛏️</span></div>
+          <div class="room-body">
+            <span class="badge">Sức chứa: [PLACEHOLDER: số khách]</span>
+            <h3>[Tên phòng 2]</h3>
+            <p class="room-meta">👥 Sức chứa: <span class="placeholder">[PLACEHOLDER: số khách]</span><br>
+              🛏️ <span class="placeholder">[PLACEHOLDER: loại giường]</span></p>
+            <div class="chips"><span class="chip placeholder">[PLACEHOLDER: tiện ích riêng của phòng 2]</span></div>
+            <div class="room-foot">
+              <span class="price placeholder">[PLACEHOLDER: giá/đêm]</span>
+              <button class="btn room-book" type="button" data-room="[Tên phòng 2]">Đặt phòng →</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="room-card">
+          <div class="room-visual" role="img" aria-label="Ảnh minh họa tạm cho phòng 3"><span>🛏️</span></div>
+          <div class="room-body">
+            <span class="badge">Sức chứa: [PLACEHOLDER: số khách]</span>
+            <h3>[Tên phòng 3]</h3>
+            <p class="room-meta">👥 Sức chứa: <span class="placeholder">[PLACEHOLDER: số khách]</span><br>
+              🛏️ <span class="placeholder">[PLACEHOLDER: loại giường]</span></p>
+            <div class="chips"><span class="chip placeholder">[PLACEHOLDER: tiện ích riêng của phòng 3]</span></div>
+            <div class="room-foot">
+              <span class="price placeholder">[PLACEHOLDER: giá/đêm]</span>
+              <button class="btn room-book" type="button" data-room="[Tên phòng 3]">Đặt phòng →</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="room-card">
+          <div class="room-visual" role="img" aria-label="Ảnh minh họa tạm cho phòng 4"><span>🛏️</span></div>
+          <div class="room-body">
+            <span class="badge">Sức chứa: [PLACEHOLDER: số khách]</span>
+            <h3>[Tên phòng 4]</h3>
+            <p class="room-meta">👥 Sức chứa: <span class="placeholder">[PLACEHOLDER: số khách]</span><br>
+              🛏️ <span class="placeholder">[PLACEHOLDER: loại giường]</span></p>
+            <div class="chips"><span class="chip placeholder">[PLACEHOLDER: tiện ích riêng của phòng 4]</span></div>
+            <div class="room-foot">
+              <span class="price placeholder">[PLACEHOLDER: giá/đêm]</span>
+              <button class="btn room-book" type="button" data-room="[Tên phòng 4]">Đặt phòng →</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Tiện ích chung -->
+  <section id="tien-ich" class="section-alt" aria-label="Tiện ích chung">
+    <div class="wrap">
+      <h2>Tiện ích chung</h2>
+      <p class="lead">Dùng chung cho mọi phòng.</p>
+      <div class="amen-grid">
+        <div class="amen"><div class="icon" aria-hidden="true">🍳</div>
+          <h3>Bếp chung</h3><p>Nấu ăn chung, đủ đồ dùng cơ bản.</p></div>
+        <div class="amen"><div class="icon" aria-hidden="true">🌿</div>
+          <h3>Sân vườn</h3><p>Ngồi chơi, đọc sách, chụp ảnh.</p></div>
+        <div class="amen"><div class="icon" aria-hidden="true">🔥</div>
+          <h3>BBQ ngoài trời</h3><p>Khu nướng ngoài trời, đặt trước khi dùng.</p></div>
+        <div class="amen"><div class="icon" aria-hidden="true">🛵</div>
+          <h3>Thuê xe máy</h3><p class="placeholder">[PLACEHOLDER: giá thuê/ngày, liên hệ]</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Đặt phòng -->
+  <section id="dat-phong" aria-label="Đặt phòng">
+    <div class="wrap">
+      <div class="booking-box">
+        <h2>Đặt phòng</h2>
+        <p>Gọi điện hoặc nhắn Zalo — chủ nhà xác nhận phòng trống trong ngày. Không có form đặt phòng online.</p>
+        <div class="chosen-room" id="chosenRoom" aria-live="polite"></div>
+        <div class="booking-actions">
+          <a class="btn btn-primary book-call" href="#dat-phong">📞 Gọi đặt phòng</a>
+          <a class="btn btn-outline-light book-zalo" href="#dat-phong">💬 Nhắn Zalo</a>
+        </div>
+        <div class="booking-note">
+          <p>🕑 Giờ nhận phòng: <span class="placeholder">[PLACEHOLDER]</span></p>
+          <p>🕛 Giờ trả phòng: <span class="placeholder">[PLACEHOLDER]</span></p>
+          <p>📌 Lưu ý: <span class="placeholder">[PLACEHOLDER: đặt cọc/hủy phòng]</span></p>
+          <p><em>Lưu ý: số điện thoại và link Zalo thật chưa được cung cấp nên các nút trên đang hiển thị trạng thái chờ cập nhật — thay CONTACT ở đầu file là nút hoạt động ngay, không cần sửa chỗ khác.</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <h3>🌲 Thông Reo — Homestay Đà Lạt</h3>
+    <p>Địa chỉ: <span class="placeholder">[PLACEHOLDER: địa chỉ Đà Lạt]</span></p>
+    <p>Điện thoại / Zalo: <span class="placeholder">[PLACEHOLDER]</span></p>
+    <p>Giờ hoạt động: <span class="placeholder">[PLACEHOLDER]</span></p>
+    <p>© <span class="placeholder">[PLACEHOLDER: năm]</span> Homestay Thông Reo</p>
+    <p><em>Ảnh trên trang là minh họa tạm — thay bằng ảnh thật của homestay trước khi bàn giao khách.</em></p>
+  </div>
+</footer>
+
+<!-- Thanh đặt phòng cố định cuối màn hình — chỉ mobile, ẩn khi khối Đặt phòng đang hiển thị -->
+<div class="sticky-book" id="stickyBook">
+  <a class="btn book-call" href="#dat-phong">📞 Gọi</a>
+  <a class="btn book-zalo" href="#dat-phong">💬 Zalo</a>
+</div>
+
+<script>
+  // CẤU HÌNH LIÊN HỆ: điền số thật vào đây là mọi nút Gọi/Zalo hoạt động.
+  var CONTACT = { phone: "", zalo: "" }; // phone: chỉ chữ số, không dấu cách
+
+  function wireBookingButtons() {
+    document.querySelectorAll(".book-call").forEach(function (el) {
+      if (CONTACT.phone) {
+        el.href = "tel:" + CONTACT.phone;
+        el.textContent = "📞 Gọi đặt phòng";
+        el.removeAttribute("aria-disabled");
+      } else {
+        el.href = "#dat-phong";
+        el.textContent = "📞 Gọi đặt phòng (chưa cập nhật SĐT)";
+        el.setAttribute("aria-disabled", "true");
+      }
+    });
+    document.querySelectorAll(".book-zalo").forEach(function (el) {
+      if (CONTACT.zalo) {
+        el.href = CONTACT.zalo;
+        el.target = "_blank"; el.rel = "noopener";
+        el.textContent = "💬 Zalo";
+        el.removeAttribute("aria-disabled");
+      } else {
+        el.href = "#dat-phong";
+        el.textContent = "💬 Zalo (chưa cập nhật)";
+        el.setAttribute("aria-disabled", "true");
+      }
+    });
+  }
+
+  // Menu mobile: nút ☰ mở/đóng danh sách neo tới các khối.
+  var menuBtn = document.getElementById("menuBtn");
+  var mobileNav = document.getElementById("mobileNav");
+  menuBtn.addEventListener("click", function () {
+    var open = mobileNav.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  mobileNav.querySelectorAll("a").forEach(function (a) {
+    a.addEventListener("click", function () {
+      mobileNav.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  // Nút "Đặt phòng →" trên mỗi thẻ phòng: ghi nhớ phòng đã chọn rồi
+  // cuộn xuống khối Đặt phòng (đúng thiết kế 5.4).
+  var chosenRoom = document.getElementById("chosenRoom");
+  document.querySelectorAll(".room-book").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var room = btn.getAttribute("data-room");
+      chosenRoom.textContent = "Bạn đã chọn: " + room + " — khi gọi, nói tên phòng này cho nhanh.";
+      document.getElementById("dat-phong").scrollIntoView({ behavior: "smooth" });
+    });
+  });
+
+  // Ẩn thanh đặt phòng mobile khi khối Đặt phòng đang hiển thị.
+  var sticky = document.getElementById("stickyBook");
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      sticky.classList.toggle("hidden", entries[0].isIntersecting);
+    }).observe(document.getElementById("dat-phong"));
+  }
+
+  wireBookingButtons();
+</script>
+</body>
+</html>
