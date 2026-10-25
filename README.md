@@ -1,6 +1,6 @@
 # Thông Reo
 
-Trang giới thiệu (landing page) **tĩnh** — homestay Thông Reo tại Đà Lạt: 4 phòng nhà gỗ ấm cúng, sân vườn, BBQ ngoài trời. Đặt phòng qua gọi điện hoặc Zalo.. Trang được dựng bằng HTML, CSS và JavaScript thuần, không cần bước biên dịch.
+Trang giới thiệu (landing page) **tĩnh** — homestay Thông Reo tại Đà Lạt: 4 phòng nhà gỗ ấm cúng, sân vườn, BBQ ngoài trời. Đặt phòng qua gọi điện hoặc Zalo. Trang được dựng bằng HTML, CSS và JavaScript thuần, không cần bước biên dịch.
 
 > Mọi tên, số điện thoại, địa chỉ và số liệu trên trang đều là **dữ liệu mẫu**. Giá hiển thị là **giá mẫu**. Biểu mẫu (nếu có) chỉ là giao diện minh họa: không gửi dữ liệu đi đâu và không có backend.
 
