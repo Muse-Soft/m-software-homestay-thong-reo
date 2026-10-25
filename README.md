@@ -1,37 +1,23 @@
-# m-software-homestay-thong-reo
+# Thông Reo
 
-Trang web giới thiệu homestay Thông Reo tại Đà Lạt (Sprint 1 — Epic TEC-78).
+Trang giới thiệu (landing page) **tĩnh** — homestay Thông Reo tại Đà Lạt: 4 phòng nhà gỗ ấm cúng, sân vườn, BBQ ngoài trời. Đặt phòng qua gọi điện hoặc Zalo.. Trang được dựng bằng HTML, CSS và JavaScript thuần, không cần bước biên dịch.
 
-## Trang chính
+> Mọi tên, số điện thoại, địa chỉ và số liệu trên trang đều là **dữ liệu mẫu**. Giá hiển thị là **giá mẫu**. Biểu mẫu (nếu có) chỉ là giao diện minh họa: không gửi dữ liệu đi đâu và không có backend.
 
-Mở `index.html` bằng trình duyệt (không cần build). Một trang duy nhất, mobile-first:
+**Demo trực tuyến:** https://m-software-homestay-thong-reo.genalpha.dev
+**Giấy phép:** [MIT](LICENSE) © M-Software
 
-- Header cố định + hero (tên homestay, 2 nút đặt phòng)
-- Giới thiệu ngắn: nhà gỗ, sân vườn, gần trung tâm
-- 4 thẻ phòng (TEC-80): sức chứa, loại giường, tiện ích riêng, giá/đêm
-- Tiện ích chung (TEC-80): bếp chung, sân vườn, BBQ, thuê xe máy
-- Khối đặt phòng: gọi điện / Zalo + giờ nhận–trả phòng
-- Footer + thanh đặt phòng cố định cuối màn hình (chỉ mobile)
+## Cách xem
 
-Thiết kế: `docs/thiet-ke-homestay-thong-reo.md` (TEC-79) — bảng màu nâu gỗ
-`#6B4A2F`, kem `#FAF3E7`, cam đất `#C97B4A`, xanh thông `#3E5C4B`;
-font Playfair Display / Be Vietnam Pro (hỗ trợ tiếng Việt).
+Mở `index.html` bằng trình duyệt (nhấp đúp, không cần máy chủ), hoặc mở liên kết demo ở trên. Giữ nguyên các tệp cùng thư mục vì liên kết là tương đối.
 
-## Chưa thuộc phạm vi TEC-80
+| Tệp | Nội dung |
+|---|---|
+| `README.md` | Tài liệu giới thiệu này |
+| `index.html` | Trang chính |
 
-Đánh giá khách + điểm tham quan gần đó là task TEC-81 riêng — chưa có trong
-trang này, không tự thêm trước khi TEC-81 làm.
+## English
 
-## ⚠️ Placeholder — phải thay bằng nội dung thật trước khi launch
+A **static** landing page for Thông Reo, built with plain HTML, CSS and JavaScript. All names, contact details and figures shown are sample data, displayed prices are sample prices, and any form is interface-only — nothing is submitted and there is no backend. Open `index.html` in a browser. Licensed under MIT.
 
-Nguồn yêu cầu MSR-12 không có tên phòng, giá, SĐT, link Zalo hay địa chỉ cụ
-thể, nên trang hiện dùng `[PLACEHOLDER]` rõ ràng — tuyệt đối không bịa số liệu:
-
-- [ ] Tên 4 phòng, sức chứa, loại giường, tiện ích riêng, giá/đêm từng phòng
-- [ ] Số điện thoại + link Zalo: điền vào `CONTACT` ở đầu thẻ `<script>` trong
-      `index.html` là mọi nút Gọi / Zalo (hero, thẻ phòng, khối đặt phòng,
-      thanh mobile) tự động dùng link `tel:` / Zalo thật — hiện các nút hiển
-      thị trạng thái "chưa cập nhật" và không gọi tới số giả nào
-- [ ] Địa chỉ, khoảng cách tới trung tâm, giá thuê xe máy, giờ nhận/trả phòng,
-      lưu ý đặt cọc/hủy phòng
-- [ ] Ảnh thật của homestay (hiện là khối minh họa tạm)
+Contact: contact@genalpha.dev
